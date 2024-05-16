@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class BackgroundScroll : MonoBehaviour {
     [SerializeField]
     private float scrollSpeed = 1.0f;
+
+    [SerializeField]
+    private PlayerController playerController;
 
     private float _topBorder;
     private float _bottomBorder;
@@ -17,6 +17,7 @@ public class BackgroundScroll : MonoBehaviour {
     }
 
     void Update() {
+        scrollSpeed = playerController.CurrentSpeed - 4.0f;
         transform.localPosition += Vector3.down * (scrollSpeed * Time.deltaTime);
 
         if (IsPassedBorder()) {
@@ -31,7 +32,7 @@ public class BackgroundScroll : MonoBehaviour {
     }
 
     private bool IsPassedBorder() {
-        if (scrollSpeed > 0.0f && transform.position.y < _bottomBorder 
+        if (scrollSpeed > 0.0f && transform.position.y < _bottomBorder
             || scrollSpeed < 0.0f && transform.position.y > _topBorder) {
             return true;
         }
