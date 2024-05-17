@@ -17,7 +17,12 @@ public class BackgroundScroll : MonoBehaviour {
     }
 
     void Update() {
-        scrollSpeed = playerController.CurrentSpeed - 4.0f;
+        if (!playerController) {
+            scrollSpeed = 5.0f;
+        } else {
+            scrollSpeed = playerController.CurrentSpeed - 4.0f;
+        }
+
         transform.localPosition += Vector3.down * (scrollSpeed * Time.deltaTime);
 
         if (IsPassedBorder()) {

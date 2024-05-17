@@ -1,27 +1,26 @@
 using System;
 using System.Collections;
-using SmallShips;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyShipController : MonoBehaviour {
     private float _speed = 5.0f;
-    private float _rotationSpeed = 60.0f;
 
     [SerializeField]
     private float rotationModifier = -90.0f;
 
     private Rigidbody2D _rb;
+
     private float _fireRate = 3.0f;
 
     private GameObject _player;
 
-    private float _maxDistanceToPlayer = 1.0f;
+    private float _maxDistanceToPlayer = 3.0f;
+
 
     void Start() {
         _rb = this.GetComponent<Rigidbody2D>();
         _player = GameObject.FindGameObjectWithTag("Player");
-         StartCoroutine(Shooting());
+        StartCoroutine(Shooting());
     }
 
     void Update() {
@@ -40,11 +39,12 @@ public class EnemyShipController : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, _player.transform.position, _speed * Time.deltaTime);
         }
     }
-    private IEnumerator Shooting() {
 
+    private IEnumerator Shooting() {
         while (gameObject) {
             yield return new WaitForSeconds(_fireRate);
-            Shoot(); 
+            Shoot();
+            GetComponent<EnemySoundController>().PlayShotSound();
         }
     }
 }

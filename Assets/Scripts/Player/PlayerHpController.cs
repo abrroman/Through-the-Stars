@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using SmallShips;
 using UnityEngine;
 
 public class PlayerHpController : MonoBehaviour {
@@ -8,24 +7,12 @@ public class PlayerHpController : MonoBehaviour {
     public const float INVINCIBLE_TIME = 3.0f;
 
     [SerializeField]
-    private SpriteRenderer sprite;
-
-    [SerializeField]
-    private Color flashColor;
-
-    [SerializeField]
     private int _hp;
 
-    private Animator _anim;
     private bool _isHittable = true;
 
     public Action DamageTaken;
-
-    private void OnValidate() {
-        if (!sprite) {
-            sprite = GetComponent<SpriteRenderer>();
-        }
-    }
+    public Action PlayerDied;
 
     public int Hp {
         get { return _hp; }
@@ -33,7 +20,6 @@ public class PlayerHpController : MonoBehaviour {
 
     void Start() {
         _hp = MAX_HP;
-        _anim = GetComponent<Animator>();
     }
 
     public void TakeDamage(int damage) {
@@ -43,7 +29,6 @@ public class PlayerHpController : MonoBehaviour {
 
         _hp -= damage;
         StartCoroutine(BecomeInvincible());
-        StartCoroutine(FlashPlayer());
         DamageTaken?.Invoke();
 
         if (_hp <= 0) {
@@ -52,34 +37,20 @@ public class PlayerHpController : MonoBehaviour {
     }
 
     private void Death() {
-        GetComponent<ExplosionController>().StartExplosion();
+        StartCoroutine(EndGame());
     }
 
     private IEnumerator BecomeInvincible() {
         _isHittable = false;
-        yield return StartCoroutine(FlashPlayer());
+        yield return StartCoroutine(GetComponent<PlayerFlash>().FlashPlayer(INVINCIBLE_TIME));
         _isHittable = true;
     }
 
-    private IEnumerator FlashPlayer() {
-        Color originalColor = sprite.color;
-        float elapsedTime = 0.0f;
-        float elapsedFlashPercentage = 0.0f;
-        float pingPongPercentage;
-
-        while (elapsedTime < INVINCIBLE_TIME) {
-            elapsedTime += Time.deltaTime;
-            elapsedFlashPercentage = elapsedTime / INVINCIBLE_TIME;
-
-            if (elapsedFlashPercentage > 1.0f) {
-                elapsedFlashPercentage = 1.0f;
-            }
-
-
-            pingPongPercentage = Mathf.PingPong(elapsedFlashPercentage * 2 * 6, 1);
-            sprite.color = Color.Lerp(originalColor, flashColor, pingPongPercentage);
-
-            yield return null;
-        }
+    private IEnumerator EndGame() {
+        GetComponent<PlayerSoundController>().PlayDeathSound();
+        GetComponent<ExplosionController>().StartExplosion();
+        yield return new WaitForSeconds(0.5f);
+        Time.timeScale = 0.0f;
+        PlayerDied?.Invoke();
     }
 }

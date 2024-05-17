@@ -1,6 +1,7 @@
 using UnityEngine;
 
 public class PlayerProjectileHazard : MonoBehaviour {
+    
     [SerializeField]
     private int damage = 5;
 

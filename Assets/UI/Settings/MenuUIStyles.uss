@@ -1,0 +1,56 @@
+.button {
+    height: 10%;
+    width: 25%;
+}
+
+.restartbutton {
+    background-image: url("project://database/Assets/Retro%20Info%20Boxes/Sliced/Content%20Button/cb_a.png?fileID=21300000&guid=f1e068a1281e0b44291f0c833e7f1f9a&type=3#cb_a");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    -unity-font: url("project://database/Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF.ttf?fileID=12800000&guid=585188cdc4600544eb408bee749e4b3a&type=3#ThaleahFat_TTF");
+    -unity-font-definition: initial;
+    font-size: 500%;
+    color: rgb(255, 255, 255);
+    width: 20%;
+}
+
+.restartbutton:hover {
+    background-image: url("project://database/Assets/Retro%20Info%20Boxes/Sliced/Content%20Button/cb_h.png?fileID=21300000&guid=422de333033944e4483f1b500b4e1e8f&type=3#cb_h");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-text-outline-color: rgba(0, 96, 255, 0);
+    -unity-text-outline-width: 5px;
+}
+
+.restartbutton:focus {
+    background-image: url("project://database/Assets/Retro%20Info%20Boxes/Sliced/Content%20Button/cb_n.png?fileID=21300000&guid=ea53adf4b139cd84e83b2f8a40d744ae&type=3#cb_n");
+    background-color: rgba(0, 0, 0, 0);
+    -unity-text-outline-color: rgba(0, 96, 255, 0);
+    -unity-text-outline-width: 5px;
+}
+
+.quitbutton {
+    background-image: url("project://database/Assets/Retro%20Info%20Boxes/Sliced/Content%20Button/cb_a.png?fileID=21300000&guid=f1e068a1281e0b44291f0c833e7f1f9a&type=3#cb_a");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    -unity-font: url("project://database/Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF.ttf?fileID=12800000&guid=585188cdc4600544eb408bee749e4b3a&type=3#ThaleahFat_TTF");
+    color: rgb(255, 255, 255);
+    font-size: 500%;
+    -unity-font-definition: initial;
+}
+
+.quitbutton:hover {
+    background-image: url("project://database/Assets/Retro%20Info%20Boxes/Sliced/Content%20Button/cb_h.png?fileID=21300000&guid=422de333033944e4483f1b500b4e1e8f&type=3#cb_h");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.quitbutton:focus {
+    background-image: url("project://database/Assets/Retro%20Info%20Boxes/Sliced/Content%20Button/cb_n.png?fileID=21300000&guid=ea53adf4b139cd84e83b2f8a40d744ae&type=3#cb_n");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.label {
+    -unity-font: url("project://database/Assets/Thaleah_PixelFont/Materials/ThaleahFat_TTF.ttf?fileID=12800000&guid=585188cdc4600544eb408bee749e4b3a&type=3#ThaleahFat_TTF");
+    -unity-font-definition: initial;
+    font-size: 650%;
+    color: rgb(255, 255, 255);
+}
